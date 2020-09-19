@@ -1,22 +1,36 @@
 #!/usr/bin/env bash
-cd /home/pi/Apps/hue-control/api
-echo "Stashing lock files"
+BRANCH_NAME=$1;
+
+if [[ $BRANCH_NAME == "master" ]]; then
+	cd /home/pi/Apps/hue-control/api
+else
+	exit 0;
+fi
+
+echo "Stashing lock files "
 git stash
 
 echo "Dropping stash"
 git stash drop
 
-echo "Pulling from Master"
-git pull origin master
-echo "Pulled successfully from master"
+echo "Pulling from ${BRANCH_NAME}"
+git pull origin ${BRANCH_NAME}
+echo "Pulled successfully"
 
-echo "Installing dependencies..."
-npm ci
-echo "Dependencies were installed"
+echo "Removing node_modules"
+rm -rf node_modules
+echo "Reinstalling dependencies"
+npm install
+echo "Project dependencies was installed"
 
-echo "Rebuilding application"
-npm run build
+echo "Rebooting Hue-Control API"
 
-echo "Rebuild OK"
+if [[ $BRANCH_NAME == "master" ]]; then
+	echo "pm2 restart hue-control-api"
+else
+    exit 0;
+fi
+echo "Reboot OK"
 echo "Deployment complete, and it was a success!"
+
 exit 0
