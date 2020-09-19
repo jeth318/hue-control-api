@@ -7,8 +7,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const router = require('./router');
-app.use(router);
-
+app.use("/lights/api", router);
 
 app.listen(port, () => {
   console.info(`server started on port ${port}`);

@@ -1,6 +1,7 @@
 const axios = require('axios');
 const { baseUrl, endpoints } = require('./config.js');
 const { LIGHTS, GROUPS, STATE } = endpoints;
+console.log(baseUrl);
 
 const pong = (req, res) => res.send("OK"); 
 

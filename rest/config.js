@@ -12,5 +12,4 @@ const endpoints = {
     GROUPS: 'groups',
     STATE: 'state',
 }
-
 module.exports = { host, userId, protocol, port, baseUrl, endpoints };
