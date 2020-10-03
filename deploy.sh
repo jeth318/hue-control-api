@@ -17,9 +17,8 @@ echo "Pulling from ${BRANCH_NAME}"
 git pull origin ${BRANCH_NAME}
 echo "Pulled successfully"
 
-echo "Removing node_modules"
-rm -rf node_modules
-echo "Reinstalling dependencies"
+
+echo "Installing dependencies"
 npm install
 echo "Project dependencies was installed"
 
