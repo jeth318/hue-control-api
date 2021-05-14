@@ -1,7 +1,6 @@
 const axios = require('axios');
 const { baseUrl, endpoints } = require('./config.js');
-const { LIGHTS, GROUPS, STATE } = endpoints;
-console.log(baseUrl);
+const { LIGHTS, GROUPS, STATE, RVC_API } = endpoints;
 
 const pong = (req, res) => res.send("OK"); 
 
@@ -11,8 +10,8 @@ const fetchHueData = async () => {
 }
 
 const fetchAllLights = async (req, res) => {
-    const { data } = await axios({ url: `${baseUrl}/${LIGHTS}` });
-    return res.json(data);
+    const response = await axios({ url: `${baseUrl}/${LIGHTS}` });
+    return res.json(response.data);
 }
 
 const fetchAllGroups = async (req, res) => {
@@ -22,8 +21,8 @@ const fetchAllGroups = async (req, res) => {
 
 const setLight = async (req, res) => {
     const { data } = await axios({
-        url: `${baseUrl}/${LIGHTS}/${req.params.id}/${STATE}`,
-        method: 'PUT',
+        url: `${baseUrl}/${RVC_API}/${STATE}`,
+        method: 'POST',
         data: req.body
     });
     return res.json(data);
