@@ -21,8 +21,8 @@ const fetchAllGroups = async (req, res) => {
 
 const setLight = async (req, res) => {
     const { data } = await axios({
-        url: `${baseUrl}/${RVC_API}/${STATE}`,
-        method: 'POST',
+        url: `${baseUrl}/${LIGHTS}/${req.params.id}/${STATE}`,
+        method: 'PUT',
         data: req.body
     });
     return res.json(data);
