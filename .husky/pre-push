@@ -3,4 +3,4 @@
 
 npm run build
 echo "Shipping dist to server"
-rsync -arvz -e 'ssh -p 2244' --progress $(pwd)/dist/* jeth@ton-618.ddns.net:/home/jeth/apps/home-control/api
+rsync -arvz -e 'ssh -p 2244' --progress $(pwd)/dist/* jeth@10.0.128.110:/home/jeth/apps/home-control/api
