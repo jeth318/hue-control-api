@@ -1,7 +1,7 @@
 const path = require("path");
 const { config } = require("dotenv");
 config({ path: path.join(__dirname, ".env") });
-
+console.log("destination: ", path.join(__dirname, ".env"));
 const host = process.env.HUE_BRIDGE_IP;
 const hostPort = process.env.HUE_BRIDGE_PORT;
 const userId = process.env.HUE_USER_ID;
