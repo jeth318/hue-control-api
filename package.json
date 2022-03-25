@@ -1,10 +1,12 @@
 {
-  "name": "hue-control-integration",
-  "version": "1.0.0",
-  "description": "Integration API towards hue bridge",
+  "name": "home-control-api",
+  "version": "2.0.0",
+  "description": "API towards IoT in my home",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "author": "Jesper Thörnberg",
   "license": "ISC",
@@ -13,6 +15,12 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4"
   }
 }

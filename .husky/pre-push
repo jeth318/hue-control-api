@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run build
+echo "Shipping dist to server"
+rsync -arvz -e 'ssh -p 2244' --progress $(pwd)/dist/* jeth@ton-618.ddns.net:/home/jeth/apps/home-control/api
