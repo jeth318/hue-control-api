@@ -4,7 +4,9 @@
   "description": "Integration API towards hue bridge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/esbuild/bin/esbuild src/server.js --platform=node --bundle --outfile=dist/app.cj",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "author": "Jesper Thörnberg",
   "license": "ISC",
