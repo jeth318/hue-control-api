@@ -34,7 +34,7 @@ const getAutomatorState = async (req, res) => {
 };
 
 const setAutomatorState = async (req, res) => {
-  automatorState.active = !!req.body.active;
+  automatorState.active = req.body.active;
   return res.json(automatorState);
 };
 
