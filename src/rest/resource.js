@@ -3,7 +3,7 @@ const { baseUrl, endpoints } = require("./config.js");
 const { LIGHTS, GROUPS, STATE, RVC_API } = endpoints;
 
 const pong = (req, res) => res.send("OK");
-const automatorState = { active: true };
+let automatorActive = true;
 
 const fetchHueData = async () => {
   const { response } = await Promise.all([fetchAllGroups(), fetchAllLights()]);
@@ -30,12 +30,12 @@ const setLight = async (req, res) => {
 };
 
 const getAutomatorState = async (req, res) => {
-  return res.json({ active: automatorState.active });
+  return res.json({ active: automatorActive });
 };
 
 const setAutomatorState = async (req, res) => {
-  automatorState.active = req.body.active;
-  return res.json(automatorState);
+  automatorActive = req.body.active;
+  return res.json({ active: automatorActive });
 };
 
 module.exports = {
