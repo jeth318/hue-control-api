@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { baseUrl, endpoints } = require("./config.js");
 const { LIGHTS, GROUPS, STATE, RVC_API } = endpoints;
+const { getState, setState } = require("../db/db");
 
 const pong = (req, res) => res.send("OK");
 let automatorActive = true;
@@ -30,12 +31,13 @@ const setLight = async (req, res) => {
 };
 
 const getAutomatorState = async (req, res) => {
-  return res.json({ active: automatorActive });
+  const { active } = await getState();
+  return res.json({ active });
 };
 
 const setAutomatorState = async (req, res) => {
-  automatorActive = req.body.active;
-  return res.json({ active: automatorActive });
+  await setState(req.body.active);
+  return res.json({ active: req.body.active });
 };
 
 module.exports = {
