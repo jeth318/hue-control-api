@@ -1,7 +1,8 @@
 const axios = require("axios");
-const { baseUrl, endpoints } = require("./config.js");
+const { baseUrl, endpoints, iPhoneMacAddress } = require("./config.js");
 const { LIGHTS, GROUPS, STATE, RVC_API } = endpoints;
 const { getState, setState } = require("../db/db");
+const automator = require("../automator/automator-worker");
 
 const pong = (req, res) => res.send("OK");
 let automatorActive = true;
@@ -37,6 +38,7 @@ const getAutomatorState = async (req, res) => {
 
 const setAutomatorState = async (req, res) => {
   await setState(req.body.active);
+  automator.setEnabled(req.body.active);
   return res.json({ active: req.body.active });
 };
 

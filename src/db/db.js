@@ -12,9 +12,7 @@ const getCollection = async () => {
 const getState = async () => {
   try {
     const collection = await getCollection();
-    const state = await collection.findOne({});
-    console.log(state.active);
-    return state.active;
+    return await collection.findOne({});
   } catch (error) {
     console.log("Error", error);
   } finally {
