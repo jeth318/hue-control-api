@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { baseUrl, endpoints, iPhoneMacAddress } = require("./config.js");
+const { baseUrl, endpoints, networkDeviceUrl } = require("./config.js");
 const { LIGHTS, STATE } = endpoints;
 
 const __fetchAllLights = async () => axios({ url: `${baseUrl}/${LIGHTS}` });
@@ -13,7 +13,7 @@ const __setLight = async (id, payload) => {
 };
 
 const __getDeviceConnectivity = async () => {
-  const url = `http://10.0.128.110/router/client-info/${iPhoneMacAddress}`;
+  const url = networkDeviceUrl;
   const { data } = await axios(url);
 
   return { connected: !!data.isOnline };
