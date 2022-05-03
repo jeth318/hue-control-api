@@ -9,6 +9,7 @@ const port = process.env.PORT;
 const mongoUri = process.env.MONGO_URI;
 const routerInfoUrl = process.env.NETWORK_DEVICE_URL;
 const iPhoneMacAddress = process.env.IPHONE_MAC_ADDRESS;
+const tapoPrivacyUrl = process.env.TAPO_PRIVACY_URL;
 const baseUrl = `${protocol}://${host}:${hostPort}/api/${userId}`;
 const networkDeviceUrl = `${routerInfoUrl}/${iPhoneMacAddress}`;
 const endpoints = {
@@ -25,5 +26,6 @@ module.exports = {
   mongoUri,
   endpoints,
   networkDeviceUrl,
+  tapoPrivacyUrl,
   iPhoneMacAddress,
 };

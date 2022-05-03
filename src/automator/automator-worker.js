@@ -3,7 +3,7 @@ const {
   isHallwayLight,
   turnOnHallwayOnly,
 } = require("../utils/automator.util");
-const { __fetchAllLights, __setLight } = require("../rest/internal.resource");
+const { __fetchAllLights, __setLight, __setTapoPrivacyMode } = require("../rest/internal.resource");
 
 const Automator = require("./automator");
 const automator = new Automator(10000);
@@ -13,6 +13,7 @@ const onDeviceConnected = () => {
     "Cellphone was connected to the local network. Executing automator connect actions."
   );
   autoLightsOn();
+  __setTapoPrivacyMode(true)
 };
 
 const onDeviceDisconnected = (status) => {
@@ -20,7 +21,14 @@ const onDeviceDisconnected = (status) => {
     "Cellphone was dicconnected to the local network. Executing automator disconnect actions."
   );
   autoLightsOff();
+  __setTapoPrivacyMode(false)
+
 };
+
+
+const activatePrivacyMode = () => {
+ 
+}
 
 const lightsAsArray = (lights) => {
   return Object.keys(lights).map((key) => {
