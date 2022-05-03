@@ -4,7 +4,7 @@
   "description": "Integration API towards hue bridge",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/esbuild/bin/esbuild src/server.js --platform=node --bundle --outfile=dist/app.cjs",
+    "build": "esbuild src/server.js --platform=node --bundle --outfile=dist/app.cjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
