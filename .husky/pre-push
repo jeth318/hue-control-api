@@ -1,7 +1,26 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
+"$(dirname "$0")/_/husky.sh"
 npm run build
 echo "Shipping dist to server"
-rsync -arvz -e 'ssh -p 2244' --progress $(pwd)/dist/* jeth@10.0.128.110:/home/jeth/apps/home-control/api
+
+case "$(uname -s)" in
+
+    Darwin|Linux)
+    rsync -arvz -e 'ssh -p 2244' --progress $(pwd)/dist/* jeth@10.0.128.110:/home/jeth/apps/home-control/api
+     ;;
+
+   CYGWIN*|MINGW32*|MSYS*|MINGW*)
+     echo 'MS Windows'
+     scp -P 2244 $(pwd)/dist/* jeth@10.0.128.110:/home/jeth/apps/home-control/api
+     ;;
+
+   # Add here more strings to compare
+   # See correspondence table at the bottom of this answer
+
+   *)
+     echo 'Other OS' 
+     ;;
+esac
+
+
 
