@@ -1,16 +1,16 @@
-const { port } = require("./rest/config");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-// config should be imported before importing any other file
+import cors from "cors";
+import router from "./router";
+import { port } from "./rest/config";
+import { urlencoded, json } from "body-parser";
+
 const app = require("express")();
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-const router = require("./router");
+app.use(urlencoded({ extended: true }));
+app.use(json());
 app.use("/hue", router);
 
 app.listen(port, () => {
   console.info(`server started on port ${port}`);
 });
 
-module.exports = app;
+export default app;

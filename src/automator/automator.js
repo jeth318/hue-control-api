@@ -1,7 +1,7 @@
-const EventEmitter = require("events");
-const { clearInterval } = require("timers");
-const { getState } = require("../db/db");
-const { __getDeviceConnectivity } = require("../rest/internal.resource");
+import EventEmitter from "events";
+import { clearInterval } from "timers";
+import { getState } from "../db/db";
+import { __getDeviceConnectivity } from "../rest/internal.resource.js";
 
 class Automator extends EventEmitter {
   constructor(pollTime) {
@@ -47,4 +47,4 @@ class Automator extends EventEmitter {
   }
 }
 
-module.exports = Automator;
+export default Automator;

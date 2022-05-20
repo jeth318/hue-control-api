@@ -1,10 +1,11 @@
-const axios = require("axios");
-const { baseUrl, endpoints, networkDeviceUrl, tapoPrivacyUrl } = require("./config.js");
+import axios from "axios";
+import { baseUrl, endpoints, networkDeviceUrl, tapoPrivacyUrl } from "./config.js";
+
 const { LIGHTS, STATE } = endpoints;
 
-const __fetchAllLights = async () => axios({ url: `${baseUrl}/${LIGHTS}` });
+export const __fetchAllLights = async () => axios({ url: `${baseUrl}/${LIGHTS}` });
 
-const __setLight = async (id, payload) => {
+export const __setLight = async (id, payload) => {
   return axios({
     url: `${baseUrl}/${LIGHTS}/${id}/${STATE}`,
     method: "PUT",
@@ -12,14 +13,14 @@ const __setLight = async (id, payload) => {
   });
 };
 
-const __getDeviceConnectivity = async () => {
+export const __getDeviceConnectivity = async () => {
   const url = networkDeviceUrl;
   const { data } = await axios(url);
 
   return { connected: !!data.isOnline };
 };
 
-const __setTapoPrivacyMode = async (state) => {
+export const __setTapoPrivacyMode = async (state) => {
   const config = {
     url: tapoPrivacyUrl,
     method: 'POST',
@@ -33,9 +34,3 @@ const __setTapoPrivacyMode = async (state) => {
   }
 };
 
-module.exports = {
-  __fetchAllLights,
-  __setLight,
-  __getDeviceConnectivity,
-  __setTapoPrivacyMode
-};

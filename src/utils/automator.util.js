@@ -1,11 +1,11 @@
-const dateFns = require("date-fns");
+import { getHours } from "date-fns";
 
 const isBetween = (x, min, max) => {
   return x >= min && x <= max;
 };
 
 const getTimeBasedBrightness = () => {
-  const hours = dateFns.getHours(new Date());
+  const hours = getHours(new Date());
 
   if (isBetween(hours, 0, 7)) {
     return 25;
@@ -25,14 +25,10 @@ const getTimeBasedBrightness = () => {
 };
 
 const turnOnHallwayOnly = () => {
-  const hours = dateFns.getHours(new Date());
+  const hours = getHours(new Date());
   return isBetween(hours, 22, 23) || isBetween(hours, 0, 7);
 };
 const isHallwayLight = (light) =>
   light.name === "Hallen V" || light.name === "Hallen H";
 
-module.exports = {
-  isHallwayLight,
-  turnOnHallwayOnly,
-  getTimeBasedBrightness,
-};
+export { isHallwayLight, turnOnHallwayOnly, getTimeBasedBrightness };

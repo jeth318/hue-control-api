@@ -1,5 +1,5 @@
-const { MongoClient } = require("mongodb");
-const { mongoUri } = require("../rest/config");
+import { MongoClient } from "mongodb";
+import { mongoUri } from "../rest/config";
 
 const client = new MongoClient(mongoUri);
 
@@ -37,4 +37,4 @@ const setState = async (active) => {
   }
 };
 
-module.exports = { getState, setState };
+export { getState, setState };
