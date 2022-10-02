@@ -2,25 +2,40 @@ import Automator from "./automator";
 import { getTimeBasedBrightness, isHallwayLight, turnOnHallwayOnly } from "../utils/automator.util";
 import { __fetchAllLights, __setLight, __setTapoPrivacyMode } from "../rest/internal.resource";
 
+let actionTimeout;
+
+function startActionTimeout() {
+  actionTimeout = setTimeout(function () {
+    console.log('Count down complete. Will run disconnect actions');
+    autoLightsOff();
+    autoTvOff();
+    __setTapoPrivacyMode(false)
+  }, 30000);
+}
+
+function clearActionTimeout() {
+  clearTimeout(actionTimeout);
+  console.log('Count down was cancelled. Ignoring disconnect actions');
+}
+
 const automator = new Automator(10000);
 
 const onDeviceConnected = () => {
   console.log(
     "Cellphone was connected to the local network. Executing automator connect actions."
   );
+  !!actionTimeout && clearActionTimeout()
   autoLightsOn();
   __setTapoPrivacyMode(true)
 };
 
 const onDeviceDisconnected = (status) => {
   console.log(
-    "Cellphone was dicconnected to the local network. Executing automator disconnect actions."
+    "Cellphone was disconnected from the local network. Executing automator disconnect actions."
   );
+  console.log('Starting disconnect count down 30 seconds.');
 
-  autoLightsOff();
-  autoTvOff();
-  __setTapoPrivacyMode(false)
-
+  startActionTimeout()
 };
 
 const lightsAsArray = (lights) => {
