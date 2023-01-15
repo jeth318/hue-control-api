@@ -15,9 +15,15 @@ export const __setLight = async (id, payload) => {
 
 export const __getDeviceConnectivity = async () => {
   const url = networkDeviceUrl;
-  const { data } = await axios(url);
+  try {
+    const { data } = await axios(url);
+    return { connected: !!data?.isOnline };
+    
+  } catch (error) {
+    console.error(error.message)
+    return { connected: false };
+  }
 
-  return { connected: !!data.isOnline };
 };
 
 export const __setTapoPrivacyMode = async (state) => {
