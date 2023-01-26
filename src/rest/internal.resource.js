@@ -17,8 +17,8 @@ export const __getDeviceConnectivity = async () => {
   const url = networkDeviceUrl;
   try {
     const { data } = await axios(url);
-    return { connected: !!data?.isOnline };
-    
+    return { connected: data?.isOnline > 0 };
+
   } catch (error) {
     console.error(error.message)
     return { connected: false };
