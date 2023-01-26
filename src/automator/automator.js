@@ -15,8 +15,6 @@ class Automator extends EventEmitter {
 
   async fetchState() {
     const { connected } = await __getDeviceConnectivity();
-    console.log('this.isDeviceConnected', this.isDeviceConnected);
-    console.log('connected', connected);
     if (connected !== this.isDeviceConnected) {
       const event = connected ? "deviceConnected" : "deviceDisconnected";
       this.isDeviceConnected = connected;
