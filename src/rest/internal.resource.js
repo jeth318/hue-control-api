@@ -36,7 +36,7 @@ export const __setTapoPrivacyMode = async (state) => {
   try {
     await axios(config);
   } catch (error) {
-    console.log('Error', error);
+    console.log('Failed to set tapo mode:', error.message);
   }
 };
 
