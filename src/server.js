@@ -7,7 +7,7 @@ const app = require("express")();
 app.use(cors());
 app.use(urlencoded({ extended: true }));
 app.use(json());
-app.use("/hue", router);
+app.use("/iot/hue", router);
 
 app.listen(port, () => {
   console.info(`server started on port ${port}`);

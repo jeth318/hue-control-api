@@ -1,7 +1,7 @@
 import axios from "axios";
-import automator from "../automator/automator-worker";
 import { baseUrl, endpoints } from "./config.js";
-import { getState, setState } from "../db/db.js";
+
+let automatorState = true;
 
 const { LIGHTS, GROUPS, STATE } = endpoints;
 
@@ -32,13 +32,11 @@ export const setLight = async (req, res) => {
 };
 
 export const getAutomatorState = async (req, res) => {
-  const { active } = await getState();
-  return res.json({ active });
+  return res.json({ active: automatorState });
 };
 
 export const setAutomatorState = async (req, res) => {
-  await setState(req.body.active);
-  automator.setEnabled(req.body.active);
-  return res.json({ active: req.body.active });
+  automatorState = req.body.active;
+  return res.json({ active: automatorState });
 };
 
